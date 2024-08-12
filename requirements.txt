@@ -1,0 +1,6 @@
+1) Python 3.12.1
+2) Flask
+3) Html
+4) Javascript
+5) Custom CSS
+6) Stack Data Structure
