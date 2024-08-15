@@ -130,4 +130,4 @@ class Solution:
         return stack[-1]
 
 s = Solution()
-print(s.infixToPrefix("a+b"))
+# print(s.infixToPrefix("a+b"))
