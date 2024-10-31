@@ -3,6 +3,8 @@
 **Algebrify** is a web-based tool for converting arithmetic expressions between infix, postfix, and prefix notations. <br>
 Built with Flask, this application allows users to easily perform conversions and visualize different representations of arithmetic expressions.<br>
 
+[Watch Project Demo](https://github.com/prathammkc/Algebrify/blob/main/Algebrify.mp4)
+
 ## Features
 
 - Convert infix expressions to postfix and prefix notations
