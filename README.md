@@ -22,17 +22,22 @@ Built with Flask, this application allows users to easily perform conversions an
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/chelaramanipratham/Algebrify.git
+    git clone https://github.com/prathammkc/Algebrify.git
+    ```
+    
+2. **Navigate to the Project Directory:**
+
+    ```sh
     cd Algebrify
     ```
 
-2. **Set up a virtual environment:**
+3. **Set up a virtual environment:**
 
     ```bash
     python -m venv venv
     ```
 
-3. **Activate the virtual environment:**
+4. **Activate the virtual environment:**
 
     - On Windows:
 
@@ -46,7 +51,7 @@ Built with Flask, this application allows users to easily perform conversions an
       source venv/bin/activate
       ```
 
-4. **Install the required dependencies:**
+5. **Install the required dependencies:**
 
     ```bash
     pip install -r requirements.txt
