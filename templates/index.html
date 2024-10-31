@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebrify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Algebrify</h1>
+        <form id="conversionForm">
+            <label for="expression">Enter Expression:</label>
+            <input type="text" id="expression" name="expression" required>
+            
+            <label for="conversionType">Select Conversion:</label>
+            <select id="conversionType" name="conversion_type" required>
+                <option value="infix_to_postfix">Infix to Postfix</option>
+                <option value="infix_to_prefix">Infix to Prefix</option>
+                <option value="postfix_to_infix">Postfix to Infix</option>
+                <option value="prefix_to_infix">Prefix to Infix</option>
+                <option value="postfix_to_prefix">Postfix to Prefix</option>
+                <option value="prefix_to_postfix">Prefix to Postfix</option>
+            </select>
+            
+            <button type="submit">Convert</button>
+        </form>
+        <div id="result">
+            <h2>Result:</h2>
+            <p id="resultText"></p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
