@@ -1,4 +1,4 @@
-1) Python 3.12
+1) Python
 2) Flask
 3) Html5
 4) Javascript
