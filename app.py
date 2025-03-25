@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
 class Solution:
     def InfixtoPostfix(self, s):
@@ -10,11 +10,9 @@ class Solution:
 
         def is_operator(c):
             return c in precedence
-        
+
         def top_precedence():
-            if operators:
-                return precedence.get(operators[-1], 0)
-            return 0
+            return precedence.get(operators[-1], 0) if operators else 0
 
         for char in s:
             if char.isalnum():
@@ -24,7 +22,7 @@ class Solution:
             elif char == ")":
                 while operators and operators[-1] != "(":
                     output.append(operators.pop())
-                operators.pop()
+                if operators: operators.pop()  # Remove '('
             elif is_operator(char):
                 while (operators and operators[-1] != "(" and
                        precedence[char] <= top_precedence()):
@@ -36,88 +34,57 @@ class Solution:
 
         return "".join(output)
 
-    def infixToPrefix(self, string):
+    def infixToPrefix(self, s):
         def reverse_expression(exp):
-            rev_exp = []
-            for char in reversed(exp):
-                if char == "(": rev_exp.append(")")
-                elif char == ")": rev_exp.append("(")
-                else: rev_exp.append(char)
-            return "".join(rev_exp)
-        
-        def InfixToPostfix(s):
-            stack = []
-            postfix = []
-            precedence = {"+":1, "-":1, "*":2, "/":2, "^":3}
-            def top_precedence():
-                if stack:
-                    return precedence.get(stack[-1])
-                return 0
-            for char in s:
-                if char.isalnum():
-                    postfix.append(char)
-                elif char == "(":
-                    stack.append(char)
-                elif char == ")":
-                    while stack and stack[-1] != "(":
-                        postfix.append(stack.pop())
-                    stack.pop()
-                else:
-                    while stack and precedence[char] < top_precedence():
-                        postfix.append(stack.pop())
-                    stack.append(char)
-            while stack:
-                postfix.append(stack.pop())
-            return "".join(postfix)
-        
-        rev_expression = reverse_expression(string)
-        postfix_expression = InfixToPostfix(rev_expression)
-        ans = reverse_expression(postfix_expression)
-        return ans
+            return "".join(")" if c == "(" else "(" if c == ")" else c for c in reversed(exp))
+
+        rev_exp = reverse_expression(s)
+        postfix_exp = self.InfixtoPostfix(rev_exp)
+        return reverse_expression(postfix_exp)
 
     def postfixToInfix(self, postfix):
         stack = []
         for char in postfix:
-            if char.isalnum(): stack.append(char)
-            else:
+            if char.isalnum():
+                stack.append(char)
+            elif len(stack) >= 2:  # Ensure stack has enough operands
                 t1 = stack.pop()
                 t2 = stack.pop()
-                con = "(" + t2 + char + t1 + ")"
-                stack.append(con)
-        return stack[-1]
-    
-    def prefixToInfix(self, s):
+                stack.append(f"({t2}{char}{t1})")
+        return stack[-1] if stack else "Invalid Expression"
+
+    def prefixToInfix(self, prefix):
         stack = []
-        for char in reversed(s):
-            if char.isalnum(): stack.append(char)
-            else:
+        for char in reversed(prefix):
+            if char.isalnum():
+                stack.append(char)
+            elif len(stack) >= 2:
                 t1 = stack.pop()
                 t2 = stack.pop()
-                con = "(" + t1 + char + t2 + ")"
-                stack.append(con)
-        return stack[-1]
-    
-    def postfixToPrefix(self, s):
+                stack.append(f"({t1}{char}{t2})")
+        return stack[-1] if stack else "Invalid Expression"
+
+    def postfixToPrefix(self, postfix):
         stack = []
-        for char in s:
-            if char.isalnum(): stack.append(char)
-            else:
+        for char in postfix:
+            if char.isalnum():
+                stack.append(char)
+            elif len(stack) >= 2:
                 t1 = stack.pop()
                 t2 = stack.pop()
-                con = char + t2 + t1
-                stack.append(con)
-        return stack[-1]
-    
-    def prefixToPostfix(self, s):
+                stack.append(char + t2 + t1)
+        return stack[-1] if stack else "Invalid Expression"
+
+    def prefixToPostfix(self, prefix):
         stack = []
-        for char in reversed(s):
-            if char.isalnum(): stack.append(char)
-            else:
+        for char in reversed(prefix):
+            if char.isalnum():
+                stack.append(char)
+            elif len(stack) >= 2:
                 t1 = stack.pop()
                 t2 = stack.pop()
-                con = t1 + t2 + char
-                stack.append(con)
-        return stack[-1]
+                stack.append(t1 + t2 + char)
+        return stack[-1] if stack else "Invalid Expression"
 
 solution = Solution()
 
@@ -128,24 +95,25 @@ def index():
 @app.route('/convert', methods=['POST'])
 def convert():
     data = request.get_json()
-    expression = data.get('expression', '')
+    expression = data.get('expression', '').strip()
     conversion_type = data.get('conversion_type', '')
-    
-    if conversion_type == 'infix_to_postfix':
-        result = solution.InfixtoPostfix(expression)
-    elif conversion_type == 'infix_to_prefix':
-        result = solution.infixToPrefix(expression)
-    elif conversion_type == 'postfix_to_infix':
-        result = solution.postfixToInfix(expression)
-    elif conversion_type == 'prefix_to_infix':
-        result = solution.prefixToInfix(expression)
-    elif conversion_type == 'postfix_to_prefix':
-        result = solution.postfixToPrefix(expression)
-    elif conversion_type == 'prefix_to_postfix':
-        result = solution.prefixToPostfix(expression)
-    else:
-        result = "Invalid conversion type"
-    
+
+    if not expression:
+        return jsonify({'result': 'Error: Empty expression'}), 400
+
+    try:
+        conversion_map = {
+            'infix_to_postfix': solution.InfixtoPostfix,
+            'infix_to_prefix': solution.infixToPrefix,
+            'postfix_to_infix': solution.postfixToInfix,
+            'prefix_to_infix': solution.prefixToInfix,
+            'postfix_to_prefix': solution.postfixToPrefix,
+            'prefix_to_postfix': solution.prefixToPostfix,
+        }
+        result = conversion_map.get(conversion_type, lambda x: "Invalid conversion type")(expression)
+    except Exception as e:
+        return jsonify({'result': f'Error: {str(e)}'}), 500
+
     return jsonify({'result': result})
 
 if __name__ == '__main__':
