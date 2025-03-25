@@ -3,7 +3,6 @@ from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 class Solution:
-    # Methods copied from your provided code
     def InfixtoPostfix(self, s):
         precedence = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
         output = []
