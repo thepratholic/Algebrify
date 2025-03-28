@@ -9,8 +9,7 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
-
-<body class="flex flex-col min-h-screen animated-gradient">
+<body class="flex flex-col min-h-screen animated-gradient transition-colors duration-500">
   <!-- Interactive Guide Modal -->
   <div id="guideModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-lg p-6 relative">
@@ -25,17 +24,19 @@
     </div>
   </div>
 
-  <!-- Header with Help Button -->
-  <header class="w-full flex justify-end p-4">
+  <!-- Header with Help and Dark Mode Toggle Buttons -->
+  <header class="w-full flex justify-end p-4 space-x-4">
     <button id="openGuide" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 transition-colors">
       Help
+    </button>
+    <button id="darkModeToggle" class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
+      Dark Mode
     </button>
   </header>
 
   <!-- MAIN CONTENT AREA -->
   <main class="flex-grow flex items-center justify-center p-4">
-    <div class="container max-w-md bg-white p-8 rounded-lg shadow-lg
-                transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1">
+    <div class="container max-w-md bg-white p-8 rounded-lg shadow-lg transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Welcome to Algebrify</h1>
 
       <form id="conversionForm" class="space-y-4">
@@ -46,9 +47,7 @@
             id="expression"
             name="expression"
             required
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2
-                   focus:outline-none focus:ring-2 focus:ring-indigo-400
-                   transition-colors duration-200"
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors duration-200"
           />
         </div>
 
@@ -58,9 +57,7 @@
             id="conversionType"
             name="conversion_type"
             required
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2
-                   focus:outline-none focus:ring-2 focus:ring-indigo-400
-                   transition-colors duration-200"
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors duration-200"
           >
             <option value="infix_to_postfix">Infix to Postfix</option>
             <option value="infix_to_prefix">Infix to Prefix</option>
@@ -73,8 +70,7 @@
 
         <button
           type="submit"
-          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 hover:scale-105
-                 transition-transform duration-300 font-semibold"
+          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 hover:scale-105 transition-transform duration-300 font-semibold"
         >
           Convert
         </button>
@@ -89,35 +85,25 @@
   </main>
 
   <!-- Dark Gradient Footer (Full Width) -->
-  <footer class="w-full py-4 text-black-100 text-center footer-gradient">
+  <footer class="w-full py-4 text-center footer-gradient">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-6">
-      <p>© 2025 <span class="font-bold text-brown-400">Pratham Chelaramani</span>. All rights reserved.</p>
+      <p class="text-black">
+        © 2025 <span class="font-bold text-[#A52A2A]">Pratham Chelaramani</span>. All rights reserved.
+      </p>
       <div class="flex space-x-4">
-        <a
-          href="https://github.com/thepratholic"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:text-white transition-colors"
-        >
+        <a href="https://github.com/thepratholic" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors text-black">
           GitHub
         </a>
-        <a
-          href="https://www.linkedin.com/in/thepratholic"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:text-white transition-colors"
-        >
+        <a href="https://www.linkedin.com/in/thepratholic" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors text-black">
           LinkedIn
         </a>
-        <a
-          href="mailto:chelaramanipratham@gmail.com"
-          class="hover:text-white transition-colors"
-        >
+        <a href="mailto:chelaramanipratham@gmail.com" class="hover:text-black transition-colors text-black">
           Email
         </a>
       </div>
     </div>
   </footer>
+  
 
   <!-- JS -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
