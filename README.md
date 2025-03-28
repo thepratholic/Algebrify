@@ -20,9 +20,7 @@ Built with Flask, this application allows users to easily perform conversions an
 
 
 ## Live Deployed link:
-    ```bash
     https://algebrify-7275.vercel.app/
-    ```
 
 ## Installation
 
