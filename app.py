@@ -1,6 +1,7 @@
+import os
 from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask(__name__) 
 
 class Solution:
     def InfixtoPostfix(self, s):
@@ -22,7 +23,8 @@ class Solution:
             elif char == ")":
                 while operators and operators[-1] != "(":
                     output.append(operators.pop())
-                if operators: operators.pop()  # Remove '('
+                if operators:
+                    operators.pop()  # Remove '('
             elif is_operator(char):
                 while (operators and operators[-1] != "(" and
                        precedence[char] <= top_precedence()):

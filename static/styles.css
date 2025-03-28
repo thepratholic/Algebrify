@@ -1,56 +1,116 @@
+/* 1) GLOBAL STYLES */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #cda9a9;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(-45deg, #f9c5d1, #cda9a9, #f9c5d1, #cda9a9);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column; /* For sticky footer layout */
+    min-height: 100vh;
     margin: 0;
-}
-
-.container {
-    background-color: rgb(226, 200, 200);
+  }
+  
+  /* Animated Gradient Keyframes */
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* 2) CONTAINER STYLES */
+  .container {
+    background-color: rgba(255, 255, 255, 0.95);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-}
-
-h1 {
+    max-width: 500px;
+    width: 90%;
+    margin: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Headings */
+  h1 {
     color: #333;
-}
-
-form {
+    margin-bottom: 1rem;
+  }
+  
+  /* 3) FORM STYLING */
+  form {
     margin-bottom: 20px;
-}
-
-input[type="text"], select {
+  }
+  
+  input[type="text"],
+  select {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 10px;
-}
-
-button {
+    transition: border-color 0.2s ease;
+  }
+  
+  input[type="text"]:focus,
+  select:focus {
+    border-color: #48ed4d;
+    outline: none;
+  }
+  
+  /* Button Styling */
+  button {
     background-color: #48ed4d;
     color: white;
     border: none;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-}
-
-#result {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #3ac13c;
+    transform: scale(1.05);
+  }
+  
+  /* 4) RESULT BOX */
+  #result {
     margin-top: 20px;
-}
-
-#resultText {
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 4px;
+  }
+  
+  #resultText {
     font-size: 18px;
     color: #333;
-}
+  }
+  
+  /* Fade-in Animation for Dynamic Elements */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .fade-in.show {
+    opacity: 1;
+  }
+  
+  /* 5) FOOTER GRADIENT */
+  .footer-gradient {
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+  }
+  

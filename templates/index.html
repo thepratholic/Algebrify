@@ -4,34 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Algebrify</title>
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Optional: Your custom styles -->
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 
-<!-- 
-  1) Use flex + flex-col + min-h-screen on body to create a sticky footer layout.
-  2) The main content area will grow to fill leftover space, ensuring the footer sits at the bottom.
--->
-<body class="flex flex-col min-h-screen bg-gradient-to-br from-pink-200 to-gray-100">
+<body class="flex flex-col min-h-screen animated-gradient">
+  <!-- Interactive Guide Modal -->
+  <div id="guideModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-lg p-6 relative">
+      <h2 class="text-2xl font-bold mb-4 text-gray-800">How to Use Algebrify</h2>
+      <ul class="list-disc ml-6 space-y-2 text-gray-700">
+        <li>Enter your mathematical expression without space in the input field. (Example: <code>A+B*C</code>)</li>
+        <li>Select the desired conversion type from the dropdown menu.</li>
+        <li>Click the <strong>Convert</strong> button to see the result.</li>
+        <li>Try a prefix expression like <code>^+ABC</code> to convert to postfix.</li>
+      </ul>
+      <button id="closeGuide" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+    </div>
+  </div>
+
+  <!-- Header with Help Button -->
+  <header class="w-full flex justify-end p-4">
+    <button id="openGuide" class="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 transition-colors">
+      Help
+    </button>
+  </header>
 
   <!-- MAIN CONTENT AREA -->
   <main class="flex-grow flex items-center justify-center p-4">
-    <!-- Centered Container for the Card/Form -->
-    <div class="container max-w-md bg-white p-8 rounded-lg shadow-lg">
+    <div class="container max-w-md bg-white p-8 rounded-lg shadow-lg
+                transition-transform duration-300 hover:shadow-2xl hover:-translate-y-1">
       <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Welcome to Algebrify</h1>
-      
+
       <form id="conversionForm" class="space-y-4">
         <div>
-          <label for="expression" class="block text-gray-700 font-medium">Enter Expression without space:</label>
-          <input 
+          <label for="expression" class="block text-gray-700 font-medium">Enter Expression:</label>
+          <input
             type="text"
             id="expression"
             name="expression"
             required
             class="mt-1 block w-full border border-gray-300 rounded-md p-2
-                   focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                   focus:outline-none focus:ring-2 focus:ring-indigo-400
+                   transition-colors duration-200"
           />
         </div>
 
@@ -42,7 +59,8 @@
             name="conversion_type"
             required
             class="mt-1 block w-full border border-gray-300 rounded-md p-2
-                   focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                   focus:outline-none focus:ring-2 focus:ring-indigo-400
+                   transition-colors duration-200"
           >
             <option value="infix_to_postfix">Infix to Postfix</option>
             <option value="infix_to_prefix">Infix to Prefix</option>
@@ -55,24 +73,50 @@
 
         <button
           type="submit"
-          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 transition-colors"
+          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 hover:scale-105
+                 transition-transform duration-300 font-semibold"
         >
           Convert
         </button>
       </form>
 
-      <div id="result" class="mt-6 p-4 bg-gray-100 rounded shadow">
+      <!-- Result Box with fade-in effect -->
+      <div id="result" class="mt-6 p-4 bg-gray-100 rounded shadow fade-in">
         <h2 class="text-xl font-semibold text-gray-700">Result:</h2>
         <p id="resultText" class="mt-2 text-lg text-gray-800"></p>
       </div>
     </div>
   </main>
 
-  <!-- FOOTER (full width) -->
-  <footer class="w-full bg-gray-800 text-gray-200 py-4 text-center">
-    <p>
-      © 2025 <span class="font-bold text-yellow-400">Pratham Chelaramani</span>. All rights reserved.
-    </p>
+  <!-- Dark Gradient Footer (Full Width) -->
+  <footer class="w-full py-4 text-black-100 text-center footer-gradient">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-6">
+      <p>© 2025 <span class="font-bold text-brown-400">Pratham Chelaramani</span>. All rights reserved.</p>
+      <div class="flex space-x-4">
+        <a
+          href="https://github.com/thepratholic"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/thepratholic"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white transition-colors"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="mailto:chelaramanipratham@gmail.com"
+          class="hover:text-white transition-colors"
+        >
+          Email
+        </a>
+      </div>
+    </div>
   </footer>
 
   <!-- JS -->
