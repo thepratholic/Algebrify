@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // FORM SUBMISSION HANDLING
   const conversionForm = document.getElementById('conversionForm');
   if (conversionForm) {
     conversionForm.addEventListener('submit', function (event) {
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('Conversion form not found.');
   }
 
-  // GUIDE MODAL HANDLING
   const openGuideButton = document.getElementById('openGuide');
   const closeGuideButton = document.getElementById('closeGuide');
   const guideModal = document.getElementById('guideModal');
@@ -79,13 +77,10 @@ document.addEventListener('DOMContentLoaded', function () {
     console.error('Guide modal elements not found.');
   }
 
-  // DARK MODE TOGGLE HANDLING
   const darkModeToggle = document.getElementById('darkModeToggle');
   darkModeToggle.addEventListener('click', function () {
-    // Toggle the 'dark-mode' class on the body element.
     document.body.classList.toggle('dark-mode');
 
-    // Optionally, change the button text.
     if (document.body.classList.contains('dark-mode')) {
       darkModeToggle.textContent = "Light Mode";
     } else {
