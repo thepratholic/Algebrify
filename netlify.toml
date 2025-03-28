@@ -1,8 +1,0 @@
-[build]
-  command = "echo 'No build step required'"
-  publish = "public"  # You can leave this folder empty if you're serving everything through Flask
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/app"
-  status = 200
