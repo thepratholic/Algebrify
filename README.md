@@ -3,7 +3,6 @@
 **Algebrify** is a web-based tool for converting arithmetic expressions between infix, postfix, and prefix notations. <br>
 Built with Flask, this application allows users to easily perform conversions and visualize different representations of arithmetic expressions.<br>
 
-[Watch Project Demo](https://github.com/prathammkc/Algebrify/blob/main/Algebrify.mp4)
 
 ## Features
 
@@ -14,10 +13,16 @@ Built with Flask, this application allows users to easily perform conversions an
 
 ## Technologies Used
 
-- **Python**: For the core logic of expression conversion.
-- **Flask**: For the backend web framework.
-- **HTML/CSS/JavaScript**: For the frontend interface.
-- **Stack data structure** : For the conversion of expressions.
+- **Backend**: Python, Flask
+- **Frontend**: HTML, Tailwind CSS, JavaScript
+- **Deployment**: Vercel, Docker
+- **Version Control**: Git, GitHub
+
+
+## Live Deployed link:
+    ```bash
+    https://algebrify-7275.vercel.app/
+    ```
 
 ## Installation
 
