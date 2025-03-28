@@ -1,0 +1,5 @@
+# Ignore all markdown files, tests, and docs
+*.md
+tests/
+docs/
+.git/
