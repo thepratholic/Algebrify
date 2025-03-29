@@ -42,23 +42,14 @@
       <form id="conversionForm" class="space-y-4">
         <div>
           <label for="expression" class="block text-gray-700 font-medium">Enter Expression:</label>
-          <input
-            type="text"
-            id="expression"
-            name="expression"
-            required
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors duration-200"
-          />
+          <input type="text" id="expression" name="expression" required
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors duration-200" />
         </div>
 
         <div>
           <label for="conversionType" class="block text-gray-700 font-medium">Select Conversion:</label>
-          <select
-            id="conversionType"
-            name="conversion_type"
-            required
-            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors duration-200"
-          >
+          <select id="conversionType" name="conversion_type" required
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-colors duration-200">
             <option value="infix_to_postfix">Infix to Postfix</option>
             <option value="infix_to_prefix">Infix to Prefix</option>
             <option value="postfix_to_infix">Postfix to Infix</option>
@@ -68,19 +59,17 @@
           </select>
         </div>
 
-        <button
-          type="submit"
-          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 hover:scale-105 transition-transform duration-300 font-semibold"
-        >
+        <button type="submit"
+          class="w-full bg-indigo-500 text-white py-2 rounded hover:bg-indigo-600 hover:scale-105 transition-transform duration-300 font-semibold">
           Convert
         </button>
       </form>
 
       <!-- Result Box with fade-in effect -->
       <div id="result" class="mt-6 p-4 bg-gray-100 rounded shadow fade-in">
-        <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-200">Result:</h2>
-        <p id="resultText" class="mt-2 text-lg text-gray-800 dark:text-gray-300"></p>
-      </div>      
+        <h2 class="result-label text-xl font-semibold">Result:</h2>
+        <p id="resultText" class="result-text mt-2 text-lg"></p>
+      </div>           
     </div>
   </main>
 
@@ -91,10 +80,12 @@
         © 2025 <span class="font-bold text-[#A52A2A]">Pratham Chelaramani</span>. All rights reserved.
       </p>
       <div class="flex space-x-4">
-        <a href="https://github.com/thepratholic" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors text-black">
+        <a href="https://github.com/thepratholic" target="_blank" rel="noopener noreferrer"
+          class="hover:text-black transition-colors text-black">
           GitHub
         </a>
-        <a href="https://www.linkedin.com/in/thepratholic" target="_blank" rel="noopener noreferrer" class="hover:text-black transition-colors text-black">
+        <a href="https://www.linkedin.com/in/thepratholic" target="_blank" rel="noopener noreferrer"
+          class="hover:text-black transition-colors text-black">
           LinkedIn
         </a>
         <a href="mailto:chelaramanipratham@gmail.com" class="hover:text-black transition-colors text-black">
@@ -103,7 +94,6 @@
       </div>
     </div>
   </footer>
-  
 
   <!-- JS -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
