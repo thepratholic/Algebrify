@@ -140,12 +140,10 @@ body {
 
 
 
-/* Light Mode */
-.result-label {
-  color: #333; /* Dark color for visibility */
+/* .result-label {
+  color: #333;
 }
 
-/* Dark Mode */
 .dark-mode .result-label {
-  color: #fff; /* White color for visibility */
-}
+  color: #fff;
+} */
