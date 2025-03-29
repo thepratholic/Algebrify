@@ -146,3 +146,14 @@ body {
 .dark-mode #resultText {
   color: #f4f4f4 !important;
 }
+
+
+/* Light Mode */
+.result-label {
+  color: #333; /* Dark color for visibility */
+}
+
+/* Dark Mode */
+.dark-mode .result-label {
+  color: #fff; /* White color for visibility */
+}
