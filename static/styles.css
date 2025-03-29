@@ -138,14 +138,6 @@ body {
   background: linear-gradient(90deg, #1a252f, #1e2a33);
 }
 
-.dark-mode h2,
-.dark-mode h2.text-gray-700 {
-  color: #f4f4f4 !important;
-}
-
-.dark-mode #resultText {
-  color: #f4f4f4 !important;
-}
 
 
 /* Light Mode */
